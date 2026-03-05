@@ -28,13 +28,12 @@ def load_data(filename="addressbook.pkl") -> AddressBook: # Завантажує
     try:
         with open(filename, "rb") as f:
             return pickle.load(f)
-    except (FileNotFoundError, EOFError):
-        # EOFError додано на випадок, якщо файл порожній
+    except (FileNotFoundError, EOFError): # Якщо файл не знайдено або він порожній, повертаємо нову адресну книгу
         return AddressBook()
 
 # --- Головна функція  ---
 
-def main(): # Головна функція, яка запускає бота та обробляє команди користувача
+def main(): # Запускає бота та обробляє команди користувача
     book = load_data()
     print("Welcome to the assistant bot!")
 
