@@ -20,10 +20,9 @@ class AddressBook(dict):
 
 # ---  Функції для роботи з файлами (Pickle) ---
 
-def save_data(book, filename="addressbook.pkl") -> AddressBook: # Зберігає адресну книгу у файл
+def save_data(book, filename="addressbook.pkl") -> None: # Зберігає адресну книгу у файл
     with open(filename, "wb") as f:
         pickle.dump(book, f)
-    return book
 
 def load_data(filename="addressbook.pkl") -> AddressBook: # Завантажує дані. Якщо файлу немає — створює нову книгу.
     try:
@@ -40,7 +39,7 @@ def main(): # Головна функція, яка запускає бота т
     print("Welcome to the assistant bot!")
 
     while True:
-        user_input = input("\nEnter a command: ").strip().lower()
+        user_input: str = input("\nEnter a command: ").strip().lower()
         
         if not user_input:
             continue
@@ -49,6 +48,7 @@ def main(): # Головна функція, яка запускає бота т
         parts = user_input.split() # Розділяємо введений рядок на команду та аргументи
         command = parts[0]
         args = parts[1:]
+
 
         if command in ["close", "exit"]: # Команди для виходу з програми
             save_data(book)
